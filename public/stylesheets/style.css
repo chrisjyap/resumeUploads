@@ -1,0 +1,29 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+}
+
+a {
+  color: #00B7FF;
+}
+
+div#drop{
+  text-align:center;
+  border: 3px dotted black;
+  height: 200px;
+  width: 400px;
+}
+
+table.resume{
+  border: 1px solid #CCC;
+  text-align:center;
+  width: 100%;
+}
+
+table.resume tr:nth-child(even) {background: #CCC}
+table.resume tr:nth-child(odd) {background: #FFF}
+
+.pointer{
+  cursor: pointer;
+}

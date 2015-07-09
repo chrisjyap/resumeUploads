@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="stylesheets/style.css"/>
+    <script src="angular/angular.js"></script>
+    <script>
+        var myApp = angular.module('myApp', []);
+        myApp.controller('ResumeController', function($scope, $http){
+            $scope.message= 'Resumes';
+            $scope.resumes= [];
+            $http.get('users/resumes').success(function(data){
+               console.log(data);
+                $scope.resumes = data;
+            });
+
+            $scope.downloadResume = function(index){
+                console.log(index, ' ', $scope.resumes[index]);
+                $http.get('users/download', {params: {id: $scope.resumes[index].saved, name: $scope.resumes[index].resume}}).success(function(data){
+                    console.log('data: ', data);
+                })
+            }
+        });
+    </script>
+</head>
+<body>
+    <div ng-controller="ResumeController">
+        <h3>{{message}}</h3>
+        <table class='resume' style="display: table;" role="grid">
+            <thead>
+            <tr role = "row">
+                <th rowspan="1" colspan="1">
+                    <b>Email</b>
+                </th>
+                <th rowspan="1" colspan="1">
+                    <b>Phone</b>
+                </th>
+                <th rowspan="1" colspan="1">
+                    <b>Resume</b>
+                </th>
+                <th rowspan="1" colspan="1">
+                    <b>Submitted</b>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="resume in resumes track by $index">
+                <td>
+                    <span>{{resume.email}}</span>
+                </td>
+                <td>
+                    <span>{{resume.phone}}</span>
+                </td>
+                <td>
+                    <span class="pointer" ng-click="downloadResume($index)">{{resume.resume}}</span>
+                </td>
+                <td>
+                    <span>{{resume.timestamp |date:'medium'}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
