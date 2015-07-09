@@ -1,6 +1,6 @@
 <h3>To use:</h3>
-Resume dashboard: http://localhost:3000/users
-Upload Resume: http://localhost:3000
+Resume dashboard: http://localhost:3000/users  
+Upload Resume: http://localhost:3000  
 
 <h3>To Install:</h3>  
 

@@ -2,11 +2,15 @@
 <html>
   <head>
     <title><%= title %></title>
+    <link rel="stylesheet" href="http://css-spinners.com/css/spinner/plus.css" type="text/css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <div style="text-align: center">
+      <div class="plus-loader hide">Loading…</div>
+    </div>
     <div id="drop">Drop files</div>
 
     <script src="javascripts/dropListener.js"></script>

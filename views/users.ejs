@@ -29,6 +29,9 @@
             <thead>
             <tr role = "row">
                 <th rowspan="1" colspan="1">
+                    <b>Name</b>
+                </th>
+                <th rowspan="1" colspan="1">
                     <b>Email</b>
                 </th>
                 <th rowspan="1" colspan="1">
@@ -44,6 +47,9 @@
             </thead>
             <tbody>
             <tr ng-repeat="resume in resumes track by $index">
+                <td>
+                    <span>{{resume.name}}</span>
+                </td>
                 <td>
                     <span>{{resume.email}}</span>
                 </td>

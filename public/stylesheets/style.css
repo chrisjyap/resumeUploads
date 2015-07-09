@@ -21,9 +21,11 @@ table.resume{
   width: 100%;
 }
 
-table.resume tr:nth-child(even) {background: #CCC}
-table.resume tr:nth-child(odd) {background: #FFF}
+table.resume tbody tr:nth-child(odd) {background: #CCC}
+table.resume tbody tr:nth-child(even) {background: #FFF}
 
 .pointer{
   cursor: pointer;
 }
+
+.hide{ display:none !important; }

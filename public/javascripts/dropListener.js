@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function(){
         console.log('bug in console?', files);
 
         var xhr = new XMLHttpRequest();
+        document.querySelector('div.plus-loader').className = 'plus-loader';
         xhr.open('POST', '/upload');
         var formData = new FormData();
         for(var i = 0; i< files.length; i++){
@@ -24,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function(){
         xhr.addEventListener('readystatechange',function(){
             if(xhr.readyState === 4){
                 console.log('response: ', xhr.responseText);
+                document.querySelector('div.plus-loader').className += ' hide';
                 alert(xhr.responseText);
             }
         });

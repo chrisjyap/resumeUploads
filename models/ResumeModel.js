@@ -4,6 +4,10 @@
 
 var mongoose = require('mongoose');
 var ResumeModel = mongoose.model('resume_info', {
+    name: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true

@@ -26,13 +26,17 @@ router.post('/upload', function(req, res){
         //console.log('Here: ', data);
         var writeTxtPromises = [];
         var mongoPromises = [];
-        var phonePattern= /(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]*\d{3}[\s.-]\d{4}/;
+        var phonePattern= /(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]*\d{3}[\s.-]*\d{4}/;
         var emailPattern= /[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?/i;
         var temp ='';
         var obj= {};
         for(var i = 0; i< data.length; i++){
-            temp = data[i].join('');
-            obj['phone'] = temp.match(phonePattern) ? temp.match(phonePattern)[0] : 'NA';
+            temp = data[i].join(' ');
+            //console.log('data: ', data[i]);
+            //console.log('phone matches: ', temp.match(phonePattern));
+            //console.log('name: ', data[i][0]);
+            obj['name'] = data[i][0];
+            obj['phone'] = temp.match(phonePattern) ? temp.match(phonePattern)[0].replace(/ /g, '') : 'NA';
             obj['email'] = temp.match(emailPattern) ? temp.match(emailPattern)[0] : 'NA';
             obj['resume'] = fileNames[i].original;
             obj['saved'] = fileNames[i].saved;
@@ -85,25 +89,3 @@ var saveResume = function(obj){
     });
     return defer.promise;
 };
-
-/* weird splitting
- path = 'uploads/' + req.files[prop]['name'];
- var buffer = fs.readFileSync(path);
- pdfText(buffer, function(err, chunks) {
- console.log(chunks);
- });*/
-
-/*
- var parser = new PDFParser();
-
- parser.on('pdfParser_dataReady', function(pdf) {
- pdf.data.Pages[0].Texts.forEach(function(text) {
- console.log(unescape(text.R[0].T))
- })
- });
-
- parser.on('pdfParser_dataError', console.log);
-
-
- parser.loadPDF(path);
- */
