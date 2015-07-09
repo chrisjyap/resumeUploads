@@ -2,12 +2,12 @@
 <html ng-app="myApp">
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>Resume Dashboard</title>
     <link rel="stylesheet" href="stylesheets/style.css"/>
     <script src="angular/angular.js"></script>
     <script>
         var myApp = angular.module('myApp', []);
-        myApp.controller('ResumeController', function($scope, $http){
+        myApp.controller('ResumeController', function($scope, $http, $window){
             $scope.message= 'Resumes';
             $scope.resumes= [];
             $http.get('users/resumes').success(function(data){
@@ -17,9 +17,7 @@
 
             $scope.downloadResume = function(index){
                 console.log(index, ' ', $scope.resumes[index]);
-                $http.get('users/download', {params: {id: $scope.resumes[index].saved, name: $scope.resumes[index].resume}}).success(function(data){
-                    console.log('data: ', data);
-                })
+                $window.open('/users/download?id='+$scope.resumes[index].saved+'&name='+$scope.resumes[index].resume, '_self');
             }
         });
     </script>
